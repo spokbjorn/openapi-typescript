@@ -1,0 +1,19 @@
+{
+  "name": "axios-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "@spokbjorn/axios-openapi-typescript": "workspace:*"
+  },
+  "devDependencies": {
+    "@spokbjorn/vite-plugin-openapi-typescript": "workspace:*",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.16"
+  }
+}

@@ -1,0 +1,51 @@
+name: CI
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm ci
+
+      - run: pnpm lint
+
+      - run: pnpm typecheck
+
+      - run: pnpm test
+
+      - run: pnpm build
+
+      - name: Get version info
+        id: get-version
+        run: node -e "const v=require('./package.json').version; console.log('version=v'+v); console.log('prerelease='+v.includes('-'))" >> $GITHUB_OUTPUT
+
+      - name: Create/update draft release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.get-version.outputs.version }}
+          name: ${{ steps.get-version.outputs.version }}
+          draft: true
+          prerelease: ${{ steps.get-version.outputs.prerelease }}
+          generate_release_notes: true
