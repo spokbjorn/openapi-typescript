@@ -1,0 +1,16 @@
+{
+  "name": "vite-plugin-openapi-ts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm --filter @spokbjorn/vite-plugin-openapi-typescript build",
+    "test": "pnpm --filter @spokbjorn/vite-plugin-openapi-typescript test",
+    "format": "prettier --write \"**/*.{ts,js,json,yaml,yml,md}\"",
+    "lint": "prettier --check \"**/*.{ts,js,json,yaml,yml,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.5.0",
+    "tsup": "^8.4.0",
+    "vitest": "^3.1.2"
+  }
+}

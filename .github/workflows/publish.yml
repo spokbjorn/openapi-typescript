@@ -1,0 +1,54 @@
+name: Publish
+
+on: workflow_dispatch
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: read
+
+jobs:
+  publish:
+    environment: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false # never use caching in release builds
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Check version change
+        id: version-check
+        run: |
+          CURRENT_VERSION=$(node -p "require('./packages/vite-plugin-openapi-ts/package.json').version")
+          PUBLISHED_VERSION=$(npm view @spokbjorn/vite-plugin-openapi-typescript version 2>/dev/null || echo "0.0.0")
+
+          if [ "$CURRENT_VERSION" != "$PUBLISHED_VERSION" ]; then
+            echo "Version changed: $PUBLISHED_VERSION → $CURRENT_VERSION"
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "version=$CURRENT_VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "Version unchanged ($CURRENT_VERSION)"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - run: pnpm lint
+        if: steps.version-check.outputs.changed == 'true'
+
+      - run: pnpm test
+        if: steps.version-check.outputs.changed == 'true'
+
+      - run: pnpm build
+        if: steps.version-check.outputs.changed == 'true'
+
+      - name: Stage new version to npm
+        if: steps.version-check.outputs.changed == 'true'
+        run: pnpm stage publish --filter @spokbjorn/vite-plugin-openapi-typescript --no-git-checks
