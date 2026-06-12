@@ -1,0 +1,60 @@
+{
+  "name": "@spokbjorn/axios-openapi-typescript",
+  "version": "0.0.1-pre.4",
+  "description": "Axios extension for type-safe OpenAPI calls using openapi-typescript",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "openapi-typescript-helpers": "^0.0.15"
+  },
+  "peerDependencies": {
+    "axios": "^1.0.0",
+    "typescript": "^5.0.0"
+  },
+  "devDependencies": {
+    "@spokbjorn/tsconfig": "workspace:*",
+    "@types/node": "^25.9.3",
+    "axios": "^1.7.9",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "keywords": [
+    "axios",
+    "openapi",
+    "swagger",
+    "typescript",
+    "type-safe"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spokbjorn/openapi-typescript.git"
+  }
+}

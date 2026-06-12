@@ -1,0 +1,26 @@
+{
+  "name": "openapi-typescript",
+  "version": "0.0.1-pre.4",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm --fail-if-no-match --filter @spokbjorn/* build",
+    "test": "pnpm --fail-if-no-match --filter @spokbjorn/* test",
+    "typecheck": "pnpm --fail-if-no-match --filter @spokbjorn/* typecheck",
+    "lint": "eslint .",
+    "format": "eslint . --fix",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix"
+  },
+  "devDependencies": {
+    "@spokbjorn/eslint-config": "workspace:*",
+    "@types/node": "^25.9.3",
+    "eslint": "^9.25.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.7",
+    "tsup": "^8.5.1",
+    "vitest": "^3.2.6"
+  }
+}
