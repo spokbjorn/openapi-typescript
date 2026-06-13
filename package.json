@@ -17,7 +17,7 @@
   "devDependencies": {
     "@spokbjorn/eslint-config": "workspace:*",
     "@types/node": "^25.9.3",
-    "eslint": "^9.25.0",
+    "eslint": "^10.5.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.7",
     "tsup": "^8.5.1",
