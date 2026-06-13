@@ -15,9 +15,14 @@ jobs:
   lint-and-test:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
+        with:
+          egress-policy: audit
+
       - uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
+      - uses: step-security/action-setup@v5
         with:
           version: latest
 
@@ -42,7 +47,7 @@ jobs:
 
       - name: Create/update draft release
         if: github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@v2
+        uses: step-security/action-gh-release@v3
         with:
           tag_name: ${{ steps.get-version.outputs.version }}
           name: ${{ steps.get-version.outputs.version }}

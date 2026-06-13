@@ -7,4 +7,34 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+
+  - package-ecosystem: npm
+    directory: /examples/axios
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: npm
+    directory: /examples/generator
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: npm
+    directory: /packages/axios-openapi-typescript
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: npm
+    directory: /packages/vite-plugin-openapi-typescript
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: npm
+    directory: /tools/eslint-config
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: npm
+    directory: /tools/tsconfig
+    schedule:
+      interval: weekly
