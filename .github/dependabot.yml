@@ -4,10 +4,19 @@
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 version: 2
 updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 2
+
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 2
     groups:
       eslint:
         patterns:
@@ -18,26 +27,36 @@ updates:
     directory: /examples/axios
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 2
 
   - package-ecosystem: npm
     directory: /examples/generator
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 2
 
   - package-ecosystem: npm
     directory: /packages/axios-openapi-typescript
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 2
 
   - package-ecosystem: npm
     directory: /packages/vite-plugin-openapi-typescript
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 2
 
   - package-ecosystem: npm
     directory: /tools/eslint-config
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 2
     groups:
       eslint:
         patterns:
@@ -49,3 +68,5 @@ updates:
     directory: /tools/tsconfig
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 2
