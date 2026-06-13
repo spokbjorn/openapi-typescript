@@ -5,7 +5,7 @@ import stylistic from "@stylistic/eslint-plugin";
 export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  stylistic.configs["recommended-flat"],
+  stylistic.configs.recommended,
   {
     rules: {
       "@stylistic/semi": ["error", "always"],

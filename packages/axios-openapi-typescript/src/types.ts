@@ -37,9 +37,9 @@ export type OpenApiConfig<Op> = Omit<AxiosRequestConfig, "params"> & {
   params?: QueryParams<Op>
 };
 
-export type AxiosOpenApiResponse<Op> =
-  | { data: ResponseData<Op>, error?: never, response: AxiosResponse }
-  | { data?: never, error: ResponseError<Op>, response: AxiosResponse };
+export type AxiosOpenApiResponse<Op>
+  = { data: ResponseData<Op>, error?: never, response: AxiosResponse }
+    | { data?: never, error: ResponseError<Op>, response: AxiosResponse };
 
 export interface AxiosOpenApi<
   Paths extends Record<string, any>,

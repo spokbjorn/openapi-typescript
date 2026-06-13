@@ -37,6 +37,7 @@ export async function generateTypes(
   catch (err) {
     throw new Error(
       `Failed to generate types for "${String(config.input)}": ${err instanceof Error ? err.message : String(err)}`,
+      { cause: err },
     );
   }
 }

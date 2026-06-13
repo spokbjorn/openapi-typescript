@@ -8,6 +8,11 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      eslint:
+        patterns:
+          - "eslint"
+          - "@eslint/*"
 
   - package-ecosystem: npm
     directory: /examples/axios
@@ -33,6 +38,12 @@ updates:
     directory: /tools/eslint-config
     schedule:
       interval: weekly
+    groups:
+      eslint:
+        patterns:
+          - "@eslint/*"
+          - "@stylistic/*"
+          - "typescript-eslint"
 
   - package-ecosystem: npm
     directory: /tools/tsconfig

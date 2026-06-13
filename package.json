@@ -16,11 +16,11 @@
   },
   "devDependencies": {
     "@spokbjorn/eslint-config": "workspace:*",
-    "@types/node": "^25.9.3",
-    "eslint": "^9.25.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.0.7",
-    "tsup": "^8.5.1",
-    "vitest": "^3.2.6"
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "husky": "catalog:",
+    "lint-staged": "catalog:",
+    "tsup": "catalog:",
+    "vitest": "catalog:"
   }
 }
