@@ -18,7 +18,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     cooldown:
       default-days: 2
     groups:
@@ -30,35 +30,35 @@ updates:
   - package-ecosystem: npm
     directory: /examples/axios
     schedule:
-      interval: daily
+      interval: weekly
     cooldown:
       default-days: 2
 
   - package-ecosystem: npm
     directory: /examples/generator
     schedule:
-      interval: daily
+      interval: weekly
     cooldown:
       default-days: 2
 
   - package-ecosystem: npm
     directory: /packages/axios-openapi-typescript
     schedule:
-      interval: daily
+      interval: weekly
     cooldown:
       default-days: 2
 
   - package-ecosystem: npm
     directory: /packages/vite-plugin-openapi-typescript
     schedule:
-      interval: daily
+      interval: weekly
     cooldown:
       default-days: 2
 
   - package-ecosystem: npm
     directory: /tools/eslint-config
     schedule:
-      interval: daily
+      interval: weekly
     cooldown:
       default-days: 2
     groups:
@@ -71,6 +71,6 @@ updates:
   - package-ecosystem: npm
     directory: /tools/tsconfig
     schedule:
-      interval: daily
+      interval: weekly
     cooldown:
       default-days: 2
