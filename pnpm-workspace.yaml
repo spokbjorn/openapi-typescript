@@ -27,7 +27,7 @@ catalog:
 
   "@types/node": "25.9.3"
 
-  axios: "1.17.0"
+  axios: "1.18.0"
 
   openapi-typescript: "7.13.0"
   openapi-typescript-helpers: "0.1.0"
