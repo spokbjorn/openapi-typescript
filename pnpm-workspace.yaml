@@ -22,7 +22,7 @@ catalog:
 
   typescript: "5.9.3"
   tsup: "8.5.1"
-  vite: "8.0.16"
+  vite: "8.1.0"
   vitest: "4.1.9"
 
   "@types/node": "25.9.3"
