@@ -47,7 +47,7 @@ jobs:
 
       - name: Create/update draft release
         if: github.ref == 'refs/heads/main'
-        uses: step-security/action-gh-release@277bfa82abcfdb73e5bbb19e213fd76532ee2be5 # v3.0.0
+        uses: step-security/action-gh-release@d2093dbdaf0c6507874908247e14bbc4dee6a72d # v3.0.1
         with:
           tag_name: ${{ steps.get-version.outputs.version }}
           name: ${{ steps.get-version.outputs.version }}
