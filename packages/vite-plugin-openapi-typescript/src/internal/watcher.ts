@@ -1,7 +1,6 @@
 ﻿import fs from "node:fs";
-import type { SchemaConfig } from "../types";
-import { isRemoteUrl, resolveInput } from "./url";
-import { isMavenInput, getLocalMavenPath, getCachePath } from "./maven";
+import type { SchemaConfig } from "@spokbjorn/openapi-typescript-generator";
+import { isRemoteUrl, resolveInput, isMavenInput, getLocalMavenPath, getCachePath } from "@spokbjorn/openapi-typescript-generator";
 
 export function setupWatcher(
   config: SchemaConfig,

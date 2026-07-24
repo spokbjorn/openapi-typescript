@@ -1,22 +1,46 @@
 ﻿import type { Plugin, ViteDevServer } from "vite";
-import type { PluginOptions, SchemaConfig } from "./types";
-import { generateTypes, setupWatcher } from "./internal";
+import fs from "node:fs";
+import path from "node:path";
+import type { PluginOptions, SchemaConfig, GeneratorOptions } from "./types";
+import { generateTypes } from "@spokbjorn/openapi-typescript-generator";
+import { setupWatcher } from "./internal/watcher";
 
 const PLUGIN_NAME = "vite-plugin-openapi-typescript";
+const DEFAULT_CONFIG_FILE = "openapi.config.json";
 
 export type { PluginOptions, SchemaConfig, MavenInput } from "./types";
 
-export default function openapiTs(options: PluginOptions): Plugin {
-  const configs: SchemaConfig[] = Array.isArray(options) ? options : [options];
+export default function openapiTs(options?: PluginOptions | string): Plugin {
   const watchers: { close: () => void }[] = [];
-
+  let configs: SchemaConfig[] = [];
   let root: string = "";
+
+  function loadConfigFile(configPath: string): GeneratorOptions {
+    const resolved = path.resolve(root, configPath);
+    if (!fs.existsSync(resolved)) {
+      throw new Error(`Config file not found: ${resolved}`);
+    }
+    const raw = fs.readFileSync(resolved, "utf-8");
+    return JSON.parse(raw) as GeneratorOptions;
+  }
 
   return {
     name: PLUGIN_NAME,
 
     configResolved(resolvedConfig) {
       root = resolvedConfig.root;
+
+      if (!options) {
+        const loaded = loadConfigFile(DEFAULT_CONFIG_FILE);
+        configs = Array.isArray(loaded) ? loaded : [loaded];
+      }
+      else if (typeof options === "string") {
+        const loaded = loadConfigFile(options);
+        configs = Array.isArray(loaded) ? loaded : [loaded];
+      }
+      else {
+        configs = Array.isArray(options) ? options : [options];
+      }
     },
 
     async buildStart() {

@@ -5,7 +5,9 @@ export default [
     ignores: [
       "**/dist/**",
       "**/node_modules/**",
+      "**/generated/**",
       "**/*.config.*",
+      "**/bin/**",
       "pnpm-lock.yaml",
     ],
   },

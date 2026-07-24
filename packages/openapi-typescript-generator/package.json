@@ -1,7 +1,7 @@
 {
-  "name": "@spokbjorn/vite-plugin-openapi-typescript",
+  "name": "@spokbjorn/openapi-typescript-generator",
   "version": "0.0.2-pre.0",
-  "description": "Vite plugin to generate TypeScript types from OpenAPI specs using openapi-typescript",
+  "description": "Standalone generator for TypeScript types from OpenAPI specs, with CLI and programmatic API",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -18,8 +18,12 @@
       }
     }
   },
+  "bin": {
+    "openapi-typescript-generator": "./bin/openapi-typescript-generator.mjs"
+  },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
   "scripts": {
     "build": "tsup",
@@ -28,19 +32,13 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
-    "@spokbjorn/openapi-typescript-generator": "workspace:*",
     "openapi-typescript": "catalog:"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0",
-    "vite": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0"
   },
   "devDependencies": {
     "@spokbjorn/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "tsup": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:",
     "vitest": "catalog:"
   },
   "publishConfig": {
@@ -48,19 +46,11 @@
   },
   "license": "MIT",
   "keywords": [
-    "vite",
-    "vite-plugin",
     "openapi",
     "swagger",
     "typescript",
-    "codegen"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/spokbjorn/openapi-typescript.git"
-  },
-  "homepage": "https://github.com/spokbjorn/openapi-typescript",
-  "bugs": {
-    "url": "https://github.com/spokbjorn/openapi-typescript/issues"
-  }
+    "codegen",
+    "generator",
+    "cli"
+  ]
 }

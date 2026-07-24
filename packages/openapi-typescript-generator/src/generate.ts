@@ -1,8 +1,8 @@
-﻿import fs from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import openapiTS, { astToString } from "openapi-typescript";
-import type { SchemaConfig } from "../types";
+import type { SchemaConfig } from "./types";
 import { resolveInput } from "./url";
 import { isMavenInput, resolveMavenArtifact } from "./maven";
 

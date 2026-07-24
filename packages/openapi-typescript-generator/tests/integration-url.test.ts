@@ -1,10 +1,10 @@
-﻿import { describe, it, expect, beforeAll, afterAll, beforeEach } from "vitest";
+import { describe, it, expect, beforeAll, afterAll, beforeEach } from "vitest";
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import os from "node:os";
 import type { AddressInfo } from "node:net";
-import { generateTypes } from "@spokbjorn/openapi-typescript-generator";
+import { generateTypes } from "../src/generate";
 
 const YAML_SPEC = `
   openapi: "3.0.3"

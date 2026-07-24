@@ -1,8 +1,8 @@
-﻿import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-import { generateTypes } from "../src/internal/generate";
+import { generateTypes } from "../src/generate";
 
 describe("generateTypes with MavenInput", () => {
   let tmpDir: string;
@@ -24,7 +24,7 @@ describe("generateTypes with MavenInput", () => {
 
     const cachePath = path.join(
       tmpDir,
-      "node_modules/.cache/vite-plugin-openapi-typescript/maven/com/example/gen-test-api/1.0.0/gen-test-api-1.0.0.yaml",
+      "node_modules/.cache/openapi-typescript-generator/maven/com/example/gen-test-api/1.0.0/gen-test-api-1.0.0.yaml",
     );
     fs.mkdirSync(path.dirname(cachePath), { recursive: true });
     const yamlSpec = [
@@ -66,7 +66,7 @@ describe("generateTypes with MavenInput", () => {
 
     const cachePath = path.join(
       tmpDir,
-      "node_modules/.cache/vite-plugin-openapi-typescript/maven/com/example/json-test-api/2.0.0/json-test-api-2.0.0.json",
+      "node_modules/.cache/openapi-typescript-generator/maven/com/example/json-test-api/2.0.0/json-test-api-2.0.0.json",
     );
     fs.mkdirSync(path.dirname(cachePath), { recursive: true });
     const spec = {

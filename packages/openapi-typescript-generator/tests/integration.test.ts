@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-import { generateTypes } from "@spokbjorn/openapi-typescript-generator";
+import { generateTypes } from "../src/generate";
 
 const PETSTORE_YAML = `openapi: "3.0.3"
 info:

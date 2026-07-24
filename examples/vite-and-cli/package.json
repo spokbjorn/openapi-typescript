@@ -1,0 +1,26 @@
+{
+  "name": "vite-and-cli-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "generate": "openapi-typescript-generator",
+    "test": "npm run generate && node --experimental-vm-modules node_modules/.bin/jest",
+    "test:vitest": "vitest run",
+    "test:all": "npm run test:vitest && npm run test"
+  },
+  "dependencies": {
+    "openapi-fetch": "catalog:"
+  },
+  "devDependencies": {
+    "@spokbjorn/openapi-typescript-generator": "workspace:*",
+    "@spokbjorn/vite-plugin-openapi-typescript": "workspace:*",
+    "@types/jest": "catalog:",
+    "jest": "catalog:",
+    "ts-jest": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+}

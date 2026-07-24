@@ -1,19 +1,5 @@
-﻿import type { OpenAPITSOptions } from "openapi-typescript";
+﻿import type { SchemaConfig } from "@spokbjorn/openapi-typescript-generator";
 
-export interface MavenInput {
-  groupId: string
-  artifactId: string
-  version: string
-  extension?: string
-  repository?: string
-}
-
-export type SchemaInput = string | URL | MavenInput;
-
-export interface SchemaConfig {
-  input: SchemaInput
-  output: string
-  openapiTS?: OpenAPITSOptions
-}
+export type { MavenInput, SchemaInput, SchemaConfig, GeneratorOptions } from "@spokbjorn/openapi-typescript-generator";
 
 export type PluginOptions = SchemaConfig | SchemaConfig[];

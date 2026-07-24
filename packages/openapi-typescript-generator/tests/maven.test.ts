@@ -1,4 +1,4 @@
-﻿import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
@@ -11,7 +11,7 @@ import {
   getCachePath,
   getRemoteMavenUrl,
   resolveMavenArtifact,
-} from "../src/internal/maven";
+} from "../src/maven";
 
 const MAVEN_CENTRAL = "https://repo1.maven.org/maven2";
 
@@ -113,7 +113,7 @@ describe("getCacheDir", () => {
     expect(result).toBe(
       path.join(
         root,
-        "node_modules/.cache/vite-plugin-openapi-typescript/maven",
+        "node_modules/.cache/openapi-typescript-generator/maven",
       ),
     );
   });
@@ -131,7 +131,7 @@ describe("getCachePath", () => {
     expect(result).toBe(
       path.join(
         root,
-        "node_modules/.cache/vite-plugin-openapi-typescript/maven/com/example/my-api/1.0.0/my-api-1.0.0.yaml",
+        "node_modules/.cache/openapi-typescript-generator/maven/com/example/my-api/1.0.0/my-api-1.0.0.yaml",
       ),
     );
   });
@@ -182,7 +182,7 @@ describe("resolveMavenArtifact", () => {
     tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "maven-test-"));
     mavenDir = path.join(
       tmpDir,
-      "node_modules/.cache/vite-plugin-openapi-typescript/maven",
+      "node_modules/.cache/openapi-typescript-generator/maven",
     );
   });
 
