@@ -2,7 +2,11 @@
   "extends": "@spokbjorn/tsconfig/base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "..",
+    "baseUrl": ".",
+    "paths": {
+      "@spokbjorn/openapi-typescript-generator": ["../openapi-typescript-generator/src/index.ts"]
+    }
   },
   "include": ["src"]
 }

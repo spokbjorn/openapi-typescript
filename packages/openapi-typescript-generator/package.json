@@ -16,6 +16,10 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
+    },
+    "./src": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
     }
   },
   "bin": {
