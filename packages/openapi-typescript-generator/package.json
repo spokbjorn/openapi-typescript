@@ -1,6 +1,6 @@
 {
   "name": "@spokbjorn/openapi-typescript-generator",
-  "version": "0.0.2-pre.0",
+  "version": "0.0.2-pre.1",
   "description": "Standalone generator for TypeScript types from OpenAPI specs, with CLI and programmatic API",
   "type": "module",
   "main": "./dist/index.cjs",
