@@ -1,7 +1,7 @@
-﻿import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { isRemoteUrl, resolveInput } from "../src/internal/url";
+import { isRemoteUrl, resolveInput } from "../src/url";
 
 describe("isRemoteUrl", () => {
   it("returns true for https URLs", () => {

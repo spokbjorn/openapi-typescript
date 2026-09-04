@@ -10,6 +10,20 @@ npm add -D @spokbjorn/vite-plugin-openapi-typescript
 
 ## Usage
 
+### Auto-load config file
+
+If your project has an `openapi.config.json` (also used by the CLI), the plugin reads it automatically:
+
+```ts
+// vite.config.ts
+import { defineConfig } from "vite";
+import openapiTs from "@spokbjorn/vite-plugin-openapi-typescript";
+
+export default defineConfig({
+  plugins: [openapiTs()],
+});
+```
+
 ### Single schema
 
 ```ts
@@ -132,6 +146,32 @@ File watching only applies to local file inputs. Remote URLs and Maven artifacts
 ### OpenAPITSOptions
 
 All [openapi-typescript CLI flags](https://openapi-ts.dev/cli#flags) in camelCase form plus the [Node API options](https://openapi-ts.dev/node#options) such as `transform`, `postTransform`, `inject`, `silent`, etc.
+
+## Shared config with CLI
+
+If your project uses both the Vite plugin and `@spokbjorn/openapi-typescript-generator` CLI (e.g., Vite for dev and Jest for testing), both tools read the same `openapi.config.json`:
+
+```json
+{
+  "input": "./petstore.yaml",
+  "output": "./src/generated/petstore.ts"
+}
+```
+
+```ts
+// vite.config.ts
+import openapiTs from "@spokbjorn/vite-plugin-openapi-typescript";
+export default defineConfig({
+  plugins: [openapiTs()], // reads openapi.config.json
+});
+```
+
+```bash
+# CLI — for Jest or CI
+npx openapi-typescript-generator
+```
+
+See the [vite-and-cli example](../../examples/vite-and-cli) for a complete working setup.
 
 ## Integration with typed clients
 

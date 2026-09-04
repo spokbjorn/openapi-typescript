@@ -37,9 +37,9 @@ jobs:
 
       - run: pnpm typecheck
 
-      - run: pnpm test
-
       - run: pnpm build
+
+      - run: pnpm test
 
       - name: Get version info
         id: get-version

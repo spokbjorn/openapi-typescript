@@ -1,4 +1,5 @@
-﻿export { isRemoteUrl, resolveInput } from "./url";
+export { generateTypes } from "./generate";
+export { isRemoteUrl, resolveInput } from "./url";
 export { downloadFile } from "./download";
 export {
   isMavenInput,
@@ -10,5 +11,9 @@ export {
   getRemoteMavenUrl,
   resolveMavenArtifact,
 } from "./maven";
-export { generateTypes } from "./generate";
-export { setupWatcher } from "./watcher";
+export type {
+  MavenInput,
+  SchemaInput,
+  SchemaConfig,
+  GeneratorOptions,
+} from "./types";

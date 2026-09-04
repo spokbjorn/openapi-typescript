@@ -1,4 +1,4 @@
-﻿import path from "node:path";
+import path from "node:path";
 import { pathToFileURL } from "node:url";
 
 export function isRemoteUrl(input: string | URL): boolean {

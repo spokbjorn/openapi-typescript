@@ -1,0 +1,4 @@
+{
+  "input": "./petstore.yaml",
+  "output": "./src/generated/petstore.ts"
+}

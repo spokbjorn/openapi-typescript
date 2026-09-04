@@ -1,11 +1,11 @@
-﻿import fs from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-import type { MavenInput } from "../types";
+import type { MavenInput } from "./types";
 import { downloadFile } from "./download";
 
 const MAVEN_CACHE_DIR
-  = "node_modules/.cache/vite-plugin-openapi-typescript/maven";
+  = "node_modules/.cache/openapi-typescript-generator/maven";
 const MAVEN_CENTRAL = "https://repo1.maven.org/maven2";
 const DEFAULT_EXTENSION = "yaml";
 

@@ -1,4 +1,4 @@
-﻿import fs from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 
 export async function downloadFile(url: string, dest: string): Promise<void> {
