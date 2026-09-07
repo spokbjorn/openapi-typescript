@@ -10,7 +10,16 @@ export {
   getCachePath,
   getRemoteMavenUrl,
   resolveMavenArtifact,
+  getMetadataUrl,
+  resolveSnapshotMetadata,
+  resolveArtifactVersion,
 } from "./maven";
+export {
+  isSnapshotVersion,
+  parseMavenMetadata,
+  resolveSnapshotVersion,
+} from "./maven-metadata";
+export type { MavenSnapshot } from "./maven-metadata";
 export type {
   MavenInput,
   SchemaInput,

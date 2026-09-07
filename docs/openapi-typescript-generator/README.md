@@ -111,6 +111,8 @@ You can resolve an OpenAPI spec from a Maven repository. The artifact is checked
 | `extension` | `string` | No | `"yaml"` | File extension (`yaml`, `yml`, `json`) |
 | `repository` | `string` | No | Maven Central | Remote Maven repository URL |
 
+When `version` ends with `-SNAPSHOT`, the generator fetches the version-level [`maven-metadata.xml`](https://maven.apache.org/ref/3.9.9/maven-repository-metadata/repository-metadata.html) from the repository to resolve the current timestamped snapshot (e.g. `1.0.0-SNAPSHOT` → `1.0.0-20240102.140000-3`). The metadata is always re-fetched so the latest snapshot is picked up.
+
 ```ts
 import { generateTypes } from "@spokbjorn/openapi-typescript-generator";
 
@@ -152,6 +154,11 @@ type GeneratorOptions = SchemaConfig | SchemaConfig[];
 | `getCachePath` | Get the cached artifact path |
 | `getRemoteMavenUrl` | Get the remote download URL for an artifact |
 | `getMavenArtifactFilename` | Get the artifact filename with extension |
+| `getMetadataUrl` | Get the URL of the version-level `maven-metadata.xml` |
+| `resolveSnapshotMetadata` | Fetch and return the remote `maven-metadata.xml` for a version |
+| `resolveArtifactVersion` | Resolve `-SNAPSHOT` to a timestamped version or return the version as-is |
+| `isSnapshotVersion` | Check if a version ends with `-SNAPSHOT` |
+| `parseMavenMetadata` | Parse `maven-metadata.xml` into `{ timestamp, buildNumber }` |
 
 ## Use cases
 
