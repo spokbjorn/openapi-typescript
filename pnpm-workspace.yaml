@@ -21,7 +21,7 @@ catalog:
   husky: "9.1.7"
   lint-staged: "17.0.8"
 
-  typescript: "5.9.3"
+  typescript: "7.0.2"
   tsup: "8.5.1"
   vite: "8.0.16"
   vitest: "4.1.9"
