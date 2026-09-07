@@ -87,6 +87,17 @@ describe("getMavenRepoPath", () => {
       "com/example/my-api/1.0.0/my-api-1.0.0.yaml",
     );
   });
+
+  it("keeps the SNAPSHOT directory but uses the resolved version in the filename", () => {
+    const maven = {
+      groupId: "com.example",
+      artifactId: "my-api",
+      version: "1.0.0-SNAPSHOT",
+    };
+    expect(getMavenRepoPath(maven, "1.0.0-20260907.120000-1")).toBe(
+      "com/example/my-api/1.0.0-SNAPSHOT/my-api-1.0.0-20260907.120000-1.yaml",
+    );
+  });
 });
 
 describe("getLocalMavenPath", () => {
@@ -135,6 +146,22 @@ describe("getCachePath", () => {
       ),
     );
   });
+
+  it("keeps SNAPSHOT directory when a resolved version is provided", () => {
+    const maven = {
+      groupId: "com.example",
+      artifactId: "my-api",
+      version: "1.0.0-SNAPSHOT",
+    };
+    const root = "/project";
+    const result = getCachePath(maven, root, "1.0.0-20260907.120000-1");
+    expect(result).toBe(
+      path.join(
+        root,
+        "node_modules/.cache/openapi-typescript-generator/maven/com/example/my-api/1.0.0-SNAPSHOT/my-api-1.0.0-20260907.120000-1.yaml",
+      ),
+    );
+  });
 });
 
 describe("getRemoteMavenUrl", () => {
@@ -158,6 +185,18 @@ describe("getRemoteMavenUrl", () => {
     };
     expect(getRemoteMavenUrl(maven)).toBe(
       "https://nexus.company.com/repository/public/com/example/my-api/1.0.0/my-api-1.0.0.yaml",
+    );
+  });
+
+  it("uses the resolved version for the SNAPSHOT filename", () => {
+    const maven = {
+      groupId: "com.example",
+      artifactId: "my-api",
+      version: "1.0.0-SNAPSHOT",
+      repository: "https://nexus.company.com/repo/",
+    };
+    expect(getRemoteMavenUrl(maven, "1.0.0-20260907.120000-1")).toBe(
+      "https://nexus.company.com/repo/com/example/my-api/1.0.0-SNAPSHOT/my-api-1.0.0-20260907.120000-1.yaml",
     );
   });
 

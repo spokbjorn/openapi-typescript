@@ -42,3 +42,4 @@ catalog:
   "@eslint/js": "10.0.1"
   "@stylistic/eslint-plugin": "5.10.0"
   typescript-eslint: "8.61.0"
+  fast-xml-parser: 5.11.1

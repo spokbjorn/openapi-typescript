@@ -36,6 +36,7 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
+    "fast-xml-parser": "catalog:",
     "openapi-typescript": "catalog:"
   },
   "devDependencies": {

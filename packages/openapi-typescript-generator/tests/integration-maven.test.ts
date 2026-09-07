@@ -22,6 +22,37 @@ const YAML_SPEC = `
             type: integer
 `;
 
+const SNAPSHOT_METADATA = `
+  <?xml version="1.0" encoding="UTF-8"?>
+  <metadata>
+    <groupId>com.example</groupId>
+    <artifactId>snapshot-api</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <versioning>
+      <snapshot>
+        <timestamp>20240102.140000</timestamp>
+        <buildNumber>3</buildNumber>
+      </snapshot>
+      <lastUpdated>20240102140000</lastUpdated>
+    </versioning>
+  </metadata>
+`;
+
+const SNAPSHOT_YAML_SPEC = `
+  openapi: "3.0.3"
+  info:
+    title: Snapshot API
+    version: "1.0.0-SNAPSHOT"
+  paths: {}
+  components:
+    schemas:
+      SnapshotWidget:
+        type: object
+        properties:
+          id:
+            type: integer
+`;
+
 describe("Maven remote integration", () => {
   let server: http.Server;
   let port: number;
@@ -35,6 +66,20 @@ describe("Maven remote integration", () => {
       if (req.url === "/com/example/test-api/1.0.0/test-api-1.0.0.yaml") {
         res.writeHead(200, { "Content-Type": "text/yaml" });
         res.end(YAML_SPEC);
+      }
+      else if (
+        req.url
+        === "/com/example/snapshot-api/1.0.0-SNAPSHOT/maven-metadata.xml"
+      ) {
+        res.writeHead(200, { "Content-Type": "application/xml" });
+        res.end(SNAPSHOT_METADATA);
+      }
+      else if (
+        req.url
+        === "/com/example/snapshot-api/1.0.0-SNAPSHOT/snapshot-api-1.0.0-20240102.140000-3.yaml"
+      ) {
+        res.writeHead(200, { "Content-Type": "text/yaml" });
+        res.end(SNAPSHOT_YAML_SPEC);
       }
       else {
         res.writeHead(404);
@@ -124,5 +169,44 @@ describe("Maven remote integration", () => {
         msg => logs.push(msg),
       ),
     ).rejects.toThrow(/404/);
+  });
+
+  it("resolves a SNAPSHOT artifact via maven-metadata.xml end-to-end", async () => {
+    const result = await resolveMavenArtifact(
+      {
+        groupId: "com.example",
+        artifactId: "snapshot-api",
+        version: "1.0.0-SNAPSHOT",
+        repository: `http://localhost:${port}/`,
+      },
+      tmpDir,
+    );
+
+    expect(fs.existsSync(result)).toBe(true);
+    const content = fs.readFileSync(result, "utf-8");
+    expect(content).toContain("Snapshot API");
+  });
+
+  it("generates types from a SNAPSHOT Maven artifact end-to-end", async () => {
+    const outputFile = path.join(tmpDir, "generated/snapshot-widget.ts");
+
+    await generateTypes(
+      {
+        input: {
+          groupId: "com.example",
+          artifactId: "snapshot-api",
+          version: "1.0.0-SNAPSHOT",
+          repository: `http://localhost:${port}/`,
+        },
+        output: outputFile,
+      },
+      tmpDir,
+      msg => logs.push(msg),
+    );
+
+    expect(fs.existsSync(outputFile)).toBe(true);
+    const contents = fs.readFileSync(outputFile, "utf-8");
+    expect(contents).toContain("SnapshotWidget");
+    expect(logs.length).toBeGreaterThan(0);
   });
 });
