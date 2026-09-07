@@ -1,6 +1,6 @@
 {
   "name": "openapi-typescript",
-  "version": "0.0.2-pre.2",
+  "version": "0.0.2-pre.3",
   "private": true,
   "type": "module",
   "scripts": {
