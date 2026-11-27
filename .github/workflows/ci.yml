@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - uses: step-security/action-setup@c9d80a280aaf584da8c913342a763a6de6452c7a # v6.0.10
+      - uses: step-security/action-setup@63a18b8579c91d195ffdbd11e1fdf0c2b9700865 # v6.1.1
         with:
           version: latest
 
